@@ -1,0 +1,10 @@
+<%= render 'shared/page', title: "#{@ingredient.name}" %>
+<% if @ingredient.recipes.count !=0 %>
+<h2 class="center">Recipes containing <%= "#{@ingredient.name}"  %></h2>
+<div class="center">
+  <%= render 'recipes/recipe', obj: @ingredient.recipes %>
+</div>
+
+<% else %>
+<h4 style="text-align: center;">No Recipes yet.!</h4>
+<% end %>

@@ -1,0 +1,11 @@
+<%= render 'shared/page', title: "Chef #{@chef.name} Profile" %>
+<p class="center"><%= gravatar_for(@chef,size:120) %></p>
+<% if @chef.recipes.count !=0 %>
+<h2 class="center"><%= "#{@chef.name}"  %> Recipes</h2>
+<div class="center">
+  <%= render 'recipes/recipe', obj: @chef.recipes %>
+</div>
+
+<% else %>
+<h4 style="text-align: center;">No Recipes yet.!</h4>
+<% end %>

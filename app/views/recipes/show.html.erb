@@ -1,0 +1,25 @@
+<%= render 'shared/page', title: @recipe.name %>
+<div class="well col-md-8 col-md-offset-2">
+  <h4 class="center description"><strong>Steps: </strong></h4>
+  <hr />
+  <%= simple_format(@recipe.description) %>
+  <hr />
+  <% if loggedIn? && (current_chef== @recipe.chef || current_chef.admin) %>
+  <div>
+    <button><%=  link_to "Edit recipe", edit_recipe_path(@recipe) %></button>
+    <button><%= link_to "Delete recipe", recipe_path(@recipe), method: :delete, data: {confirm: "Are you sure to Delete?"} %></button>
+  </div>
+  <% end %>
+  <div class="pull-right">
+    <p class="center">
+      <em>Created by:</em>
+    </p>
+    <p class="center">
+      <%= link_to gravatar_for(@recipe.chef), chef_path(@recipe.chef) %> 
+    </p>
+    <p class="center">
+      <small><%= @recipe.chef.name.capitalize %></small>
+      <div class="pull-right"><%= time_ago_in_words(@recipe.created_at) %> ago</div>
+    </p>
+  </div>
+</div>
